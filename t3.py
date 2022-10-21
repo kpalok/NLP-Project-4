@@ -29,14 +29,17 @@ def split_into_chapters(book):
     
     return chapters
 
-def Tokenize(doc):
-    Stopwords = list(set(nltk.corpus.stopwords.words('english')))
+# def Tokenize(doc):
+#     Stopwords = list(set(nltk.corpus.stopwords.words('english')))
 
 with open('ChildsGarden.txt', 'r') as file:
     CG_book = file.read()
 
-# with open('TheProphet.txt', 'r') as file:
-#     P_book = file.read()
+with open('TheProphet.txt', 'r') as file:
+    P_book = file.read()
 
 CG_chapters = split_into_chapters(CG_book)
 print(CG_chapters['BED IN SUMMER'])
+
+P_chapters = split_into_chapters(P_book)
+print(P_chapters['ON LOVE'])
