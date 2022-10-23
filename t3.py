@@ -59,10 +59,10 @@ def plot_token_length_histograms(book_name, chapters, nrows, ncolumns):
         token_lengths = get_token_lengths(chapters[title])
         cross_chapter_token_lengths.extend(token_lengths)
 
-        # histogram discretization from https://stackoverflow.com/questions/30112420/histogram-for-discrete-values-with-matplotlib
-        d = np.diff(np.unique(token_lengths)).min()
-        left_of_first_bin = token_lengths.min() - float(d)/2
-        right_of_last_bin = token_lengths.max() + float(d)/2
+        # histogram discretization
+        d = 1
+        left_of_first_bin = token_lengths.min() - 1/2
+        right_of_last_bin = token_lengths.max() + 1/2
 
         ax[row, i].hist(token_lengths, np.arange(left_of_first_bin, right_of_last_bin + d, d))
         ax[row, i].set_title(title, fontsize=8)
