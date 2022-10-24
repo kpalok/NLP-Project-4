@@ -120,6 +120,12 @@ def plot_POS_token_length_histograms(book_name, chapters):
 
     plt.subplots_adjust(left=0.05, bottom=0.05, right=0.95, top=0.90, wspace=0.20, hspace=0.60)
 
+# check nlp package requirements
+nltk.download('averaged_perceptron_tagger')
+nltk.download('universal_tagset')
+nltk.download('wordnet')
+nltk.download('omw-1.4')
+
 with open('ChildsGarden.txt', 'r') as file:
     CG_book = file.read()
 
