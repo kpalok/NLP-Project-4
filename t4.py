@@ -61,9 +61,8 @@ def plot_POS_token_length_histograms(book_name, chapters):
     for j, title in enumerate(chapters):
         pos_token_lengths = get_token_lengths_by_POS_tag(chapters[title])
 
-        if j == 0:
-            fig, ax = plt.subplots(3, 4)
-            fig.suptitle(book_name + ' chapter ' + title + ' token lengths per POS tag', fontsize=12)
+        fig, ax = plt.subplots(3, 4)
+        fig.suptitle(book_name + ' chapter ' + title + ' token lengths per POS tag', fontsize=12)
 
         row = 0
         for i, tag in enumerate(pos_token_lengths):
@@ -71,25 +70,28 @@ def plot_POS_token_length_histograms(book_name, chapters):
 
             cross_chapter_pos_token_lengths[tag] = np.concatenate((cross_chapter_pos_token_lengths[tag], token_lengths))
 
-            # Draw histogram only for first chapter and cross chapter summary, how to display all chapters?
+            # Draw histogram only for cross chapter summary, save chapter-wise figures to image folder.
             # not very readable to display ~100 figures
-            if j == 0:
-                if i - 4 * row == 4:
-                    row = row + 1
-                
-                i = i - 4 * row
-                # histogram discretization
-                if (len(token_lengths) > 0):
-                    d = 1
-                    left_of_first_bin = token_lengths.min() - float(d)/2
-                    right_of_last_bin = token_lengths.max() + float(d)/2
+            if i - 4 * row == 4:
+                row = row + 1
+            
+            i = i - 4 * row
+            # histogram discretization
+            if (len(token_lengths) > 0):
+                d = 1
+                left_of_first_bin = token_lengths.min() - float(d)/2
+                right_of_last_bin = token_lengths.max() + float(d)/2
 
-                    ax[row, i].hist(token_lengths, np.arange(left_of_first_bin, right_of_last_bin + d, d))
-                else:
-                    ax[row, i].hist(token_lengths)
+                ax[row, i].hist(token_lengths, np.arange(left_of_first_bin, right_of_last_bin + d, d))
+            else:
+                ax[row, i].hist(token_lengths)
 
-                ax[row, i].set_title(tag, fontsize=8)
-                ax[row, i].set_xticks(np.unique(token_lengths))
+            ax[row, i].set_title(tag, fontsize=8)
+            ax[row, i].set_xticks(np.unique(token_lengths))
+            
+        plt.subplots_adjust(left=0.05, bottom=0.05, right=0.95, top=0.90, wspace=0.20, hspace=0.60)
+        fig.savefig('./Task 4 Histograms/' + book_name + '/' + re.sub('[!@#$?\']', '', title) + '.jpg')
+        plt.close(fig)
 
     fig, ax = plt.subplots(3, 4)
     fig.suptitle(book_name + ' cross chapter token lengths per POS tag', fontsize=12)

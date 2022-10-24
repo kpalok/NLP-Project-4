@@ -47,7 +47,6 @@ def get_token_lengths(chapter):
 
 def plot_token_length_histograms(book_name, chapters, nrows, ncolumns):
     fig, ax = plt.subplots(nrows, ncolumns)
-    fig.canvas.set_window_title(book_name + ' token lengths per chapter')
     fig.suptitle(book_name + ' token lengths per chapter', fontsize=12)
     row = 0
     cross_chapter_token_lengths = []
@@ -59,16 +58,16 @@ def plot_token_length_histograms(book_name, chapters, nrows, ncolumns):
         token_lengths = get_token_lengths(chapters[title])
         cross_chapter_token_lengths.extend(token_lengths)
 
-        # histogram discretization
+        # histogram discretization from https://stackoverflow.com/questions/30112420/histogram-for-discrete-values-with-matplotlib
         d = 1
-        left_of_first_bin = token_lengths.min() - 1/2
-        right_of_last_bin = token_lengths.max() + 1/2
+        left_of_first_bin = token_lengths.min() - float(d)/2
+        right_of_last_bin = token_lengths.max() + float(d)/2
 
         ax[row, i].hist(token_lengths, np.arange(left_of_first_bin, right_of_last_bin + d, d))
         ax[row, i].set_title(title, fontsize=8)
         ax[row, i].set_xticks(np.unique(token_lengths))
 
-    plt.subplots_adjust(left=0.05, bottom=0.05, right=0.95, top=0.90, wspace=0.20, hspace=0.60)
+    plt.subplots_adjust(left=0.10, bottom=0.05, right=0.99, top=0.90, wspace=0.20, hspace=0.60)
 
     fig = plt.figure(book_name + ' token lengths cross-chapter')
     fig.suptitle(book_name + ' token lengths cross-chapter', fontsize=12)
