@@ -2,7 +2,7 @@ import re
 import nltk
 import numpy as np
 import matplotlib.pyplot as plt
-from t3 import split_into_chapters
+from Task3 import split_into_chapters
 from nltk.stem import WordNetLemmatizer
 from nltk.stem.snowball import SnowballStemmer
 from nltk.tokenize import sent_tokenize, word_tokenize
