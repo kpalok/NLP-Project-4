@@ -26,3 +26,7 @@ nltk.download('omw-1.4')
 ```
 python Task4.py
 ```
+
+## Task 5
+
+```python -m spacy download en_core_web_sm´´´
