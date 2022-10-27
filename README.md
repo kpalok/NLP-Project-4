@@ -2,24 +2,15 @@
 
 # Requirements and how to run
 
-## Task 3
-
-```python
-import nltk
-nltk.download('dont remember yet')
-```
-
-```
-python Task3.py
-```
-
-## Task 4
-
-```
-python Task4.py
-```
-
-## Task 5
-
+## Library and model downloads, run in console:
 ```
 python -m spacy download en_core_web_sm
+pip install -r requirements.txt
+python requirements.py
+```
+
+## Run any task file in cosole
+
+```
+python Task1.py
+```

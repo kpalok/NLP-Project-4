@@ -120,24 +120,19 @@ def plot_POS_token_length_histograms(book_name, chapters):
 
     plt.subplots_adjust(left=0.05, bottom=0.05, right=0.95, top=0.90, wspace=0.20, hspace=0.60)
 
-# check nlp package requirements
-nltk.download('averaged_perceptron_tagger')
-nltk.download('universal_tagset')
-nltk.download('wordnet')
-nltk.download('omw-1.4')
+if __name__ == "__main__":
+    with open('ChildsGarden.txt', 'r') as file:
+        CG_book = file.read()
 
-with open('ChildsGarden.txt', 'r') as file:
-    CG_book = file.read()
+    with open('TheProphet.txt', 'r') as file:
+        P_book = file.read()
 
-with open('TheProphet.txt', 'r') as file:
-    P_book = file.read()
+    # childs garden 64 chapters
+    CG_chapters = split_into_chapters(CG_book)
+    # the prophet 28 chapters
+    P_chapters = split_into_chapters(P_book)
 
-# childs garden 64 chapters
-CG_chapters = split_into_chapters(CG_book)
-# the prophet 28 chapters
-P_chapters = split_into_chapters(P_book)
+    plot_POS_token_length_histograms('Childrens Garden of Verses', CG_chapters)
+    plot_POS_token_length_histograms('The Prophet', P_chapters)
 
-plot_POS_token_length_histograms('Childrens Garden of Verses', CG_chapters)
-plot_POS_token_length_histograms('The Prophet', P_chapters)
-
-plt.show()
+    plt.show()

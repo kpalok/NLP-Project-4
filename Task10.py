@@ -16,21 +16,16 @@ def read_poem_lines(book_filename):
     return lines
 
 def calc_LD(lines):
-    Stopwords = list(set(nltk.corpus.stopwords.words('english')))
-    stemmer = SnowballStemmer("english")
-    WN_lemmatizer = WordNetLemmatizer()
     lines_LD = []
 
     for line in lines:
         words = word_tokenize(line)
-        # words = [stemmer.stem(word) for word in words]
-        # words = [WN_lemmatizer.lemmatize(word, pos="v") for word in words]
-        # words = [word for word in words if word.isalpha() and word not in Stopwords] #get rid of numbers and Stopwords
         words = nltk.pos_tag(words, tagset='universal')
 
         ADJ_and_ADV_count = len([word for (word, tag) in words if tag == 'ADJ' or tag == 'ADV'])
         VERB_count = len([word for (word, tag) in words if tag == 'VERB'])
 
+        # some lines contain no verbs or POS tagging is incorrect, just divide by one? What can be done in these cases?
         if VERB_count == 0:
             VERB_count = 1
 
