@@ -39,9 +39,9 @@ def get_token_lengths(chapter):
         words = [stemmer.stem(word) for word in words]
         words = [WN_lemmatizer.lemmatize(word, pos="v") for word in words]
 
-        token_lengths = [len(word) for word in words if word.isalpha() and word not in Stopwords] #get rid of numbers and Stopwords
+        sentence_token_lengths = [len(word) for word in words if word.isalpha() and word not in Stopwords] #get rid of numbers and Stopwords
 
-        token_lengths.extend(token_lengths)
+        token_lengths.extend(sentence_token_lengths)
 
     return np.array(token_lengths)
 
@@ -67,7 +67,7 @@ def plot_token_length_histograms(book_name, chapters, nrows, ncolumns):
         ax[row, i].set_title(title, fontsize=8)
         ax[row, i].set_xticks(np.unique(token_lengths))
 
-    plt.subplots_adjust(left=0.10, bottom=0.05, right=0.99, top=0.90, wspace=0.20, hspace=0.60)
+    plt.subplots_adjust(left=0.05, bottom=0.05, right=0.99, top=0.90, wspace=0.20, hspace=0.60)
 
     fig = plt.figure(book_name + ' token lengths cross-chapter')
     fig.suptitle(book_name + ' token lengths cross-chapter', fontsize=12)
