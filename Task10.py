@@ -42,7 +42,7 @@ def calc_10_equal_subdivision(LD_list):
     counts = []
 
     for i in range(10):
-        bins.append(bin_val * (i + 1))
+        bins.append( (i + 1))
         if i == 0:
             counts.append(len([ld for ld in LD_list if ld >= bin_val * i and ld <= bin_val * (i + 1)]))
         else:
@@ -67,6 +67,9 @@ ax[0].bar(np.arange(len(CG_LD)), CG_LD)
 ax[1].set_title('The Prophet', fontsize=8)
 ax[1].bar(np.arange(len(P_LD)), P_LD)
 
+fig.text(0.5, 0.04, 'Line number', ha='center')
+fig.text(0.04, 0.5, 'Adjective/adverb-to-verb ratio', va='center', rotation='vertical')
+
 fig, ax = plt.subplots(2, 1)
 fig.suptitle('10-equal subdivision of LD histograms', fontsize=12)
 
@@ -77,6 +80,9 @@ ax[0].bar(bins, counts)
 ax[1].set_title('The Prophet', fontsize=8)
 bins, counts = calc_10_equal_subdivision(P_LD)
 ax[1].bar(bins, counts)
+
+fig.text(0.5, 0.04, '10-equal subdivision bin', ha='center')
+fig.text(0.04, 0.5, 'Line count', va='center', rotation='vertical')
 
 plt.show()
 

@@ -63,6 +63,8 @@ def plot_POS_token_length_histograms(book_name, chapters):
 
         fig, ax = plt.subplots(3, 4)
         fig.suptitle(book_name + ' chapter ' + title + ' token lengths per POS tag', fontsize=12)
+        fig.text(0.5, 0.04, 'Token length', ha='center')
+        fig.text(0.04, 0.5, 'Count', va='center', rotation='vertical')
 
         row = 0
         for i, tag in enumerate(pos_token_lengths):
@@ -95,6 +97,8 @@ def plot_POS_token_length_histograms(book_name, chapters):
 
     fig, ax = plt.subplots(3, 4)
     fig.suptitle(book_name + ' cross chapter token lengths per POS tag', fontsize=12)
+    fig.text(0.5, 0.04, 'Token length', ha='center')
+    fig.text(0.04, 0.5, 'Count', va='center', rotation='vertical')
 
     row = 0
     for i, tag in enumerate(cross_chapter_pos_token_lengths):
@@ -118,7 +122,7 @@ def plot_POS_token_length_histograms(book_name, chapters):
         ax[row, i].set_title(tag, fontsize=8)
         ax[row, i].set_xticks(np.unique(token_lengths))
 
-    plt.subplots_adjust(left=0.05, bottom=0.05, right=0.95, top=0.90, wspace=0.20, hspace=0.60)
+    plt.subplots_adjust(left=0.1, bottom=0.1, right=0.95, top=0.90, wspace=0.20, hspace=0.60)
 
 if __name__ == "__main__":
     with open('ChildsGarden.txt', 'r') as file:

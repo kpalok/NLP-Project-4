@@ -80,6 +80,8 @@ def plot_token_length_histograms(book_name, chapters, nrows, ncolumns):
 
     plt.hist(cross_chapter_token_lengths, np.arange(left_of_first_bin, right_of_last_bin + d, d))
     plt.xticks(np.unique(cross_chapter_token_lengths))
+    plt.xlabel('Token length')
+    plt.ylabel('Count')
 
 if __name__ == "__main__":
     with open('ChildsGarden.txt', 'r') as file:
